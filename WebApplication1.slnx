@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="OrderStore.Application/OrderStore.Application.csproj" />
+  <Project Path="OrderStore.Core/OrderStore.Core.csproj" />
+  <Project Path="OrderStore.DataAccess/OrderStore.DataAccess.csproj" />
+  <Project Path="WebApplication1/WebApplication1.csproj" />
+</Solution>
