@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="EmployeeStore.Application/EmployeeStore.Application.csproj" />
   <Project Path="EmployeeStore.Core/EmployeeStore.Core.csproj" />
   <Project Path="EmployeeStore.DataAccess/EmployeeStore.DataAccess.csproj" />
   <Project Path="OrderStore.Application/OrderStore.Application.csproj" />
