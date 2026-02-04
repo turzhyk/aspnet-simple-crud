@@ -14,6 +14,7 @@ namespace OrderStore.DataAccess.Repos
 
         public OrdersRepository(OrderStoreDbContext context)
         {
+            _context = context;
         }
 
         public async Task<Order> GetWithId(Guid id)
@@ -61,6 +62,7 @@ namespace OrderStore.DataAccess.Repos
                 throw new Exception("Order not found");
             orderEntity.History.Add(new OrderHistoryElementEntity
             {
+                Order = orderEntity,
                 Status = order.History.Last().Status,
                 AuthorLogin = order.History.Last().AuthorLogin,
                 ChangedAt = order.History.Last().ChangedAt,
