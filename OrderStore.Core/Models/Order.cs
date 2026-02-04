@@ -18,6 +18,18 @@ namespace OrderStore.Core.Models
         public string Descriprion { get; }
         public decimal TotalPrice { get; }
         public string AssignedTo { get; }
+
+        public List<OrderHistoryElement> History { get; set; }
+            = new();
+
+        public void ChangeStatus(string status, string author)
+        {
+            History.Add(new OrderHistoryElement(
+                status,
+                author,
+                DateTime.UtcNow
+            ));
+        }
         public static (Order Order, string Error) Create(Guid id, string description, decimal price, string assignedTo)
         {
             var error = string.Empty;

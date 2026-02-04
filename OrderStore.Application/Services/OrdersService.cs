@@ -15,5 +15,14 @@ namespace OrderStore.Application.Services
         }
         public async Task<List<Order>> GetAllOrders() => await _repo.GetAll();
         public async Task<Guid> CreateOrder(Order order) => await _repo.Create(order);
+
+        public async Task ChangeStatusAsync(Guid orderId, string status, string author)
+        {
+            var order = await _repo.GetWithId(orderId);
+            if (order == null)
+                throw new Exception($"Order {orderId} not found");
+            order.ChangeStatus(status, author);
+            await _repo.Update(order);
+        }
     }
 }

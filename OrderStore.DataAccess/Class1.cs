@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderStore.Core.Models;
 using OrderStore.DataAccess.Entities;
 
 namespace OrderStore.DataAccess
@@ -10,6 +11,7 @@ namespace OrderStore.DataAccess
             
         }
         public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<OrderHistoryElementEntity> OrderStatusHistories { get; set; }
 
     }
 }
