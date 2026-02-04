@@ -1,3 +1,4 @@
+using EmployeeStore.DataAccess.Repos;
 using Microsoft.EntityFrameworkCore;
 using OrderStore.Application.Services;
 using OrderStore.DataAccess;
@@ -16,12 +17,18 @@ builder.Services.AddDbContext<OrderStoreDbContext>(options =>
 });
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
+builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+}
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<OrderStoreDbContext>();
+    db.Database.Migrate();
 }
 
 app.UseHttpsRedirection();

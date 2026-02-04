@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16
+    container_name: orderstore-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: orderstoredb
+    ports:
+      - "5432:5432"
+    volumes:
+      - orderstore-db-data:/var/lib/postgresql/data
+
+  web:
+    build: ./WebApplication1
+    container_name: orderstore-web
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__OrderStoreDbContext: "Host=db;Port=5432;Database=orderstoredb;Username=postgres;Password=123"
+    ports:
+      - "5092:5092"
+    depends_on:
+      - db
+
+volumes:
+  orderstore-db-data:
